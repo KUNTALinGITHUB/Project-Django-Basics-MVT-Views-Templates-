@@ -1,0 +1,74 @@
+{% extends "profiles/base.html" %}
+{% load static %}
+{% block title %} Profile {% endblock title %}
+<br>
+{% block content %}
+
+<br>
+<div class="container-md">
+    <h3 class="text-center">
+        <u>Add User Details</u>
+    </h3>
+</div>
+<div class="container-md">
+    <form action="" method="POST" id="userForm">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="InputName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="InputName" name="name" />
+        </div>
+        <div class="mb-3">
+            <label for="InputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="InputEmail1" name="email" />
+        </div>
+        <div class="mb-3">
+            <label for="InputCity" class="form-label">City</label>
+            <input type="text" class="form-control" id="InputCity" name="city" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Details</button>
+        <div id="errorMsg" class="text-danger mt-3"></div>
+    </form>
+</div>
+<br>
+{% if alert == "appended"%}
+<div class="alert alert-success" role="alert">
+    <h3 class="text-center">Details save successfully</h3>
+</div>
+{% elif alert == "failed"%}
+<div class="alert alert-danger" role="alert">
+    <h3 class="text-center">Failed to save details</h3>
+</div>
+{% elif alert == "duplicate"%}
+<div class="alert alert-danger" role="alert">
+    <h3 class="text-center">Failed to save duplicate details</h3>
+</div>
+{% endif %}
+<br>
+{% if users|length > 0 %}
+<div class="container-md">
+    <table class="table ">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User Name</th>
+                <th>Visit User Page</th>
+            </tr>
+        </thead>
+        {% for user in users %}
+        <tbody>
+            <tr>
+                <td>{{user.0}}</td>
+                <td>{{user.1}}</td>
+                <td><a href="{% url 'user_profile' user.1 %}" class="btn btn-outline-primary">View Profile</a></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+
+
+
+<script src="{% static 'profiles/script.js' %}"></script>
+{% endblock content %}

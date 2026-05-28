@@ -1,0 +1,39 @@
+{% extends "profiles/base.html" %}
+
+
+{% block title %} Portfolio {% endblock title %}
+
+
+    
+    <br>
+    {% block content %}
+    <br>
+    <div class="container-md text-center">
+        <h2><u>My Portfolio</u></h2>
+        
+    </div>
+    <br>
+    <div class="container-md">
+        <div class="container-md text-center card">
+            <div class="container card-body">
+                <h3>{{ name }}</h3>
+                <p class="role">{{ role }}</p>
+                <p class="bio">{{ bio }}</p>
+                <div class="divider"></div>
+                <p class="skills-label">Skills</p>
+                    <div class="skills">
+                        {% for skill in skills %}
+                        <span class="skill p-1">{{ skill }} </span>
+                        {% endfor %}
+                    </div>
+                    <div class="contact m-3 ">
+                        <a  href="mailto:{{ email }}" class="text-decoration-none m-3 btn btn-outline-primary">{{ email }}</a>
+                        <a   href="https://{{ github }}" target="_blank" class="text-decoration-none m-3 btn btn-outline-primary">{{ github }}</a>
+                    </div>
+            </div>
+        </div>
+        <br>
+        
+    </div>
+    
+    {% endblock content %}

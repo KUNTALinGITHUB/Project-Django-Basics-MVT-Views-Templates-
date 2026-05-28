@@ -1,0 +1,22 @@
+{% extends "profiles/base.html" %}
+
+
+{% block title %} {{name}} {% endblock title %}
+
+    
+    <br>
+    {% block content %}
+    <br>
+    {% if user|length > 0 %}
+    <div class="container-md text-center">
+        <h1>Welcome {{ user.1 }}</h1>
+        <br>
+        <h5>Name: {{user.1}}</h5>
+        <h5>Email: {{user.2}}</h5>
+        <h5>City: {{user.3}}</h5>
+    </div>
+    {% endif %}
+    {% if alert %}
+        <h2 class="container-md text-center">{{alert}}</h2>
+    {% endif %}
+    {% endblock content %}

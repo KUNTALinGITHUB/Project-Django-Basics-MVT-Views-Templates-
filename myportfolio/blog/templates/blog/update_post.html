@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+{% block title %} Update Blog {% endblock title %}
+{% block content %}
+    <div class="container-md">
+        <h3 class="text-center"><u>Update Blog</u></h3>
+    </div>
+    <br>
+    <div class="container-md">
+        <form action="" method="POST" >
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="InputBlogTitle" class="form-label">Blog Title</label>
+                <input type="text" class="form-control" id="InputBlogTitle" name="update_title" value="{{post.title}}"/>
+            </div>
+            <div class="mb-3">
+                <label for="InputContent" class="form-label">Content</label>
+                <textarea class="form-control" id="InputContent" name="update_content" value="{{post.content}}"></textarea>
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-primary">Update Blog</button>
+        </form>
+    </div>
+    <br>
+    
+    {% if alert == "error" %}
+        <div class="alert alert-danger text-center" role="alert">
+            Please fill in all fields to add a blog.
+        </div>
+    {% endif %}
+    
+{% endblock content %}
